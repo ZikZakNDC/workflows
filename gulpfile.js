@@ -21,6 +21,7 @@ gulp.task('coffee', function() {
     .pipe(gulp.dest('components/scripts'))
 });
 
+
 gulp.task('js', function() {
   gulp.src(jsSources)
     .pipe(concat('script.js'))
@@ -38,4 +39,10 @@ gulp.task('compass', function() {
     .on('error', gutil.log))
     .pipe(gulp.dest('builds/development/css'))
 });
+
+gulp.task('watch', function(){
+   gulp.watch(coffeeSources, ['coffee'])
+   gulp.watch(jsSources, ['js'])
+   gulp.watch('components/sass/*.scss', ['compass'])
+})
 
